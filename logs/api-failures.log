@@ -1,0 +1,2 @@
+{"timestamp":"2026-04-11T09:23:16.447Z","attempt":1,"payload":{"items":[{"sku":"ITEM-003","qty":10}],"customer":"shafi"},"error":"Mock OpenCart failure"}
+{"timestamp":"2026-04-11T10:24:45.600Z","attempt":1,"payload":{"items":[{"sku":"ITEM-004","qty":2}],"customer":"huzaifa"},"error":"Mock OpenCart failure"}
