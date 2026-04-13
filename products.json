@@ -1,6 +1,6 @@
 [
-  { "id": "1", "name": "Widget A",    "sku": "ITEM-001", "qty": 50, "type": "Inventory" },
-  { "id": "2", "name": "Gadget B",    "sku": "ITEM-002", "qty": 5,  "type": "Inventory" },
-  { "id": "3", "name": "Doohickey C", "sku": "ITEM-003", "qty": 0,  "type": "Inventory" },
-  { "id": "4", "name": "Thingamajig", "sku": "ITEM-004", "qty": 20, "type": "Service"   }
+  { "id": "1", "name": "Widget A",    "sku": "ITEM-001", "qty": 100, "type": "Inventory" },
+  { "id": "2", "name": "Gadget B",    "sku": "ITEM-002", "qty": 100,  "type": "Inventory" },
+  { "id": "3", "name": "Doohickey C", "sku": "ITEM-003", "qty": 100,  "type": "Inventory" },
+  { "id": "4", "name": "Thingamajig", "sku": "ITEM-004", "qty": 100, "type": "Service"   }
 ]

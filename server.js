@@ -71,7 +71,7 @@ app.get("/products", (req, res) => {
 });
 
 
-  //  VALIDATE ORDER
+// VALIDATE ORDER
 
 app.post("/validate-order", (req, res) => {
   const { items } = req.body;
@@ -83,7 +83,7 @@ app.post("/validate-order", (req, res) => {
     });
   }
 
-  // Step 1: check stock
+  // Step 1: check stock (NO CHANGE)
   for (let item of items) {
     const product = products.find(p => p.sku === item.sku);
 
@@ -93,6 +93,13 @@ app.post("/validate-order", (req, res) => {
         message: `SKU ${item.sku} not found`
       });
     }
+     // NEW CONDITION
+  if (product.qty === 0) {
+    return res.json({
+      status: "error",
+      message: `Item ${item.sku} is out of stock`
+    });
+  }
 
     if (item.qty > product.qty) {
       return res.json({
@@ -101,32 +108,30 @@ app.post("/validate-order", (req, res) => {
       });
     }
   }
+ 
+  //  REMOVE WRONG  1 STEP  COMPLETELY
+// Step 3: final verification
+// for (let item of items) {
+//   const product = products.find(p => p.sku === item.sku);
 
-  // Step 2: simulate deduction
+//   if (item.qty > product.qty) {
+//     return res.json({
+//       status: "error",
+//       message: "Stock changed due to another order",
+//       conflict: {
+//         sku: item.sku,
+//         available_now: product.qty
+//       }
+//     });
+//   }
+// }
+  // Step 2: deduct stock AFTER validation
   for (let item of items) {
     const product = products.find(p => p.sku === item.sku);
-    if (product) {
-      product.qty -= item.qty;
-    }
+    product.qty -= item.qty;
   }
 
-  // Step 3: final verification
-  for (let item of items) {
-    const product = products.find(p => p.sku === item.sku);
-
-    if (item.qty > product.qty) {
-      return res.json({
-        status: "error",
-        message: "Stock changed due to another order",
-        conflict: {
-          sku: item.sku,
-          available_now: product.qty
-        }
-      });
-    }
-  }
-
-  //  BONUS 2: Group items
+  // BONUS 2: Group items
   const groupedItems = groupItemsByType(items);
 
   res.json({
